@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/registrosFragment">
+
+    <fragment
+        android:id="@+id/registrosFragment"
+        android:name="com.example.myapplication.RegistrosFragment"
+        android:label="fragment_registros"
+        tools:layout="@layout/fragment_registros" />
+</navigation>

@@ -34,6 +34,13 @@ public class RegistrosFragment extends Fragment {
     //binding
     FragmentRegistrosBinding binding;
 
+    // Conexión al Nodo de la Base de Datos Firebase
+    String DB_FB_NODE = "message";
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference dbRef = database.getReference(DB_FB_NODE);
+    DatabaseReference userRef = dbRef.child("Usuarios");
+
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -94,69 +101,29 @@ public class RegistrosFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        /* Deprecade
-        TextView mytext = (TextView) view.findViewById(R.id.textIncio);
-        TextInputLayout tilNombre = (TextInputLayout) view.findViewById(R.id.txtNombre);
-        Button myButton = (Button)  view.findViewById(R.id.button);
-         */
-
-        // Conexión al Nodo de la Base de Datos Firebase
-        String DB_FB_NODE = "message";
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference dbRef = database.getReference(DB_FB_NODE);
-        DatabaseReference userRef = dbRef.child("Usuarios");
-
-        // myRef.setValue("Hello, ITChiná 03/10/2022!");
-
-        // Read from the database
-        /*   Primera Version
-        dbRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                String value = dataSnapshot.getValue(String.class);
-                Log.d(TAG, "Value is: " + value);
-                Toast.makeText(getActivity(), "Test ItChiná"+ value, Toast.LENGTH_SHORT).show();
-                binding.textIncio.setText(value);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
-            }
-        });
-        */
 
         binding.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*
-                myRef.setValue(binding.txtNombre.getEditText().getText().toString());
-                Toast.makeText(view.getContext(),  "Registro de Usuario Exitoso", Toast.LENGTH_SHORT).show();
-                binding.txtNombre.getEditText().setText("");
-                 */
-                String nombre = binding.inputNombre.getEditText().getText().toString();
-                String correo = binding.inputCorreo.getEditText().getText().toString();
-                String imagen = binding.inputImagen.getEditText().getText().toString();
-
-
-                userRef.push().setValue(nombre);
-                userRef.push().setValue(correo);
-                userRef.push().setValue(imagen);
-
-                Usuarios usuarios = new Usuarios(userRef.push().getKey(), nombre, correo, imagen);
-                userRef.child(usuarios.getUid()).setValue(usuarios);
-
-                binding.inputNombre.getEditText().setText("");
-                binding.inputCorreo.getEditText().setText("");
-                binding.inputImagen.getEditText().setText("");
-                binding.inputNombre.requestFocus();
-                Toast.makeText(view.getContext(),  "Registro de Usuario Exitoso", Toast.LENGTH_SHORT).show();
-
+                insertarRegistro(view);
             }
         });
-
     }
+
+
+    public void insertarRegistro(View view){
+        String nombre = binding.inputNombre.getEditText().getText().toString();
+        String correo = binding.inputCorreo.getEditText().getText().toString();
+        String imagen = binding.inputImagen.getEditText().getText().toString();
+
+        Usuarios usuarios = new Usuarios(userRef.push().getKey(), nombre, correo, imagen);
+        userRef.child(usuarios.getUid()).setValue(usuarios);
+
+        binding.inputNombre.getEditText().setText("");
+        binding.inputCorreo.getEditText().setText("");
+        binding.inputImagen.getEditText().setText("");
+        binding.inputNombre.requestFocus();
+        Toast.makeText(view.getContext(),  "Registro de Usuario Exitoso", Toast.LENGTH_SHORT).show();
+    }
+
 }

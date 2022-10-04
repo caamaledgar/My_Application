@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myapplication.databinding.FragmentRegistrosBinding;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,6 +30,8 @@ import com.google.firebase.database.ValueEventListener;
  * create an instance of this fragment.
  */
 public class RegistrosFragment extends Fragment {
+    //binding
+    FragmentRegistrosBinding binding;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -74,16 +77,27 @@ public class RegistrosFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_registros, container, false);
+        // return inflater.inflate(R.layout.fragment_registros, container, false);
+        binding = FragmentRegistrosBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
+        return view;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        /* Deprecade
         TextView mytext = (TextView) view.findViewById(R.id.textIncio);
         TextInputLayout tilNombre = (TextInputLayout) view.findViewById(R.id.txtNombre);
         Button myButton = (Button)  view.findViewById(R.id.button);
+         */
 
         // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -100,7 +114,7 @@ public class RegistrosFragment extends Fragment {
                 String value = dataSnapshot.getValue(String.class);
                 Log.d(TAG, "Value is: " + value);
                 Toast.makeText(getActivity(), "Test ItChiná"+ value, Toast.LENGTH_SHORT).show();
-                mytext.setText(value);
+                binding.textIncio.setText(value);
             }
 
             @Override
@@ -110,12 +124,12 @@ public class RegistrosFragment extends Fragment {
             }
         });
 
-        myButton.setOnClickListener(new View.OnClickListener() {
+        binding.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                myRef.setValue(tilNombre.getEditText().getText().toString());
+                myRef.setValue(binding.txtNombre.getEditText().getText().toString());
                 Toast.makeText(view.getContext(),  "Registro de Usuario Exitoso", Toast.LENGTH_SHORT).show();
-                tilNombre.getEditText().setText("");
+                binding.txtNombre.getEditText().setText("");
             }
         });
 

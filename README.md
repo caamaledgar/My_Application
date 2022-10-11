@@ -92,6 +92,88 @@ Para iniciar con nuestro RecyclerView, debemos crear un nuevo fragmento donde se
 
 ![](https://github.com/caamaledgar/documentationProjects/blob/main/RecyclerView/RecylerView.png)
 
+Añadir a este fragmento nuestro RecyclerView, desde Palettte/Common/RecyclerView
+
+````
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvRegistros"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" />
+````
+
+De igual forma crearmos un Layout para los detalles de nuestro RecyclerView, en el opción Nuevo/Layout Resource File desde el botón contextual posicionado en la carpeta Layout
+
+![](https://github.com/caamaledgar/documentationProjects/blob/main/RecyclerView/detailregistro.png)
+
+````
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:elevation="1dp"
+    android:layout_margin="8dp"
+    android:layout_height="wrap_content"
+    app:cardElevation="10dp"
+    app:cardCornerRadius="20dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:layout_margin="5dp">
+
+        <ImageView
+            android:id="@+id/imgItem"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/ic_launcher_foreground" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="2"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/tvnombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:padding="5dp"
+                android:layout_marginStart="5dp"
+                android:textColor="@color/primaryColor"
+                android:text="Nombre Completo"/>
+            <TextView
+                android:id="@+id/tvcorreo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                android:layout_marginStart="5dp"
+                android:text="Correo Electrónico"/>
+            <TextView
+                android:id="@+id/tvimagen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                android:textSize="9dp"
+                android:layout_marginStart="5dp"
+                android:text="URL Imagen"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
+
+````
+
+![](https://github.com/caamaledgar/documentationProjects/blob/main/RecyclerView/detalleRegistro.png)
+
+
 
 
 

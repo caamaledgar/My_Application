@@ -190,7 +190,7 @@ Ahora relacionaremos nuestro Fragmento de captura con nuestro RecyclerView, para
 
 ````
 
-EN nuestro archivo Java añadir la navegación
+En nuestro archivo Java añadir la navegación
 
 ````
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -208,6 +208,16 @@ EN nuestro archivo Java añadir la navegación
         });
 
 ````
+Crear dentro de nuestro proyecto en la carpeta Java y en el pakage com, dos packages:
+1.- Adapter
+2.- Recycler
 
+Estos son los elementos junto con el RecyclerVier y el Layout del Item quienes darán funcionalidad a nuestro Recycler
+
+
+La versión final debe mostrrnos una lista con nuestros registros incluyendo el diseño que creamos para cada item.
+
+RecyclerViewLista
+![](https://github.com/caamaledgar/documentationProjects/blob/main/RecyclerView/RecyclerViewLista.png)
 
 

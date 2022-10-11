@@ -174,8 +174,40 @@ De igual forma crearmos un Layout para los detalles de nuestro RecyclerView, en 
 ![](https://github.com/caamaledgar/documentationProjects/blob/main/RecyclerView/detalleRegistro.png)
 
 
+Ahora relacionaremos nuestro Fragmento de captura con nuestro RecyclerView, para ello incluyamos un botón de estilo TexButton, con un icono de flecha, que previamente debemos de incluir como un Vector Asset y añadirle un ID
 
+````
+    <Button
+        android:id="@+id/btnRecyclerRegistros"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="36dp"
+        android:layout_height="47dp"
+        android:layout_marginEnd="16dp"
+        android:text=""
+        app:icon="@drawable/ic_baseline_arrow_forward_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+````
+
+EN nuestro archivo Java añadir la navegación
+
+````
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        final NavController navController = Navigation.findNavController(view);
+        
+        //...
+
+        binding.btnRecyclerRegistros.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Toast.makeText(view.getContext(), "Click Fragmento", Toast.LENGTH_SHORT).show();
+                navController.navigate(R.id.recyclerRegistrosFragment);
+            }
+        });
+
+````
 
 
 

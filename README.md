@@ -53,6 +53,11 @@ En caso contrario mover nuestra funcionalidad actual para registro de la informa
 
  ````
 
+Para iniciar con nuestro RecyclerView, debemos crear un nuevo fragmento donde se trabajará esta nueva vista, la cual la crearemos desde nuestra vista de navegación nav_graph
+
+![](https://github.com/caamaledgar/documentationProjects/blob/main/RecyclerView/RecylerView.png)
+
+
 
 
 

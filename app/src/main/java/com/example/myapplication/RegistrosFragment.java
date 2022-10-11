@@ -1,12 +1,16 @@
 package com.example.myapplication;
 
+import static android.view.View.GONE;
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,6 +20,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.Target;
 import com.example.myapplication.Model.Usuarios;
 import com.example.myapplication.databinding.FragmentRegistrosBinding;
 import com.google.android.material.textfield.TextInputLayout;
@@ -23,6 +30,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 /**
@@ -36,6 +44,7 @@ public class RegistrosFragment extends Fragment {
 
     // Conexión al Nodo de la Base de Datos Firebase
     String DB_FB_NODE = "message";
+
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference dbRef = database.getReference(DB_FB_NODE);
     DatabaseReference userRef = dbRef.child("Usuarios");
@@ -100,7 +109,9 @@ public class RegistrosFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        final NavController navController = Navigation.findNavController(view);
 
+        binding.ivURLImage.setVisibility(GONE);
 
         binding.button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,6 +119,15 @@ public class RegistrosFragment extends Fragment {
                 insertarRegistro(view);
             }
         });
+
+        binding.btnRecyclerRegistros.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Toast.makeText(view.getContext(), "Click Fragmento", Toast.LENGTH_SHORT).show();
+                navController.navigate(R.id.recyclerRegistrosFragment);
+            }
+        });
+
     }
 
 
@@ -116,14 +136,41 @@ public class RegistrosFragment extends Fragment {
         String correo = binding.inputCorreo.getEditText().getText().toString();
         String imagen = binding.inputImagen.getEditText().getText().toString();
 
-        Usuarios usuarios = new Usuarios(userRef.push().getKey(), nombre, correo, imagen);
-        userRef.child(usuarios.getUid()).setValue(usuarios);
+        Usuarios usuarios = new Usuarios(userRef.push().getKey(),
+                nombre, correo, imagen);
 
-        binding.inputNombre.getEditText().setText("");
-        binding.inputCorreo.getEditText().setText("");
-        binding.inputImagen.getEditText().setText("");
-        binding.inputNombre.requestFocus();
-        Toast.makeText(view.getContext(),  "Registro de Usuario Exitoso", Toast.LENGTH_SHORT).show();
+
+        Query userEmailQery = userRef.orderByChild("correo").equalTo(correo).limitToFirst(1);
+        userEmailQery.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    Toast.makeText(view.getContext(), "No se puede realizar el Registro. Correo Existente " + snapshot.toString(), Toast.LENGTH_SHORT).show();
+
+                } else {
+                    userRef.child(usuarios.getUid()).setValue(usuarios);
+                    binding.inputNombre.getEditText().setText("");
+                    binding.inputCorreo.getEditText().setText("");
+                    binding.inputImagen.getEditText().setText("");
+                    binding.inputNombre.requestFocus();
+                    Toast.makeText(view.getContext(), "Registro de Usuario Exitoso", Toast.LENGTH_SHORT).show();
+
+                    Log.d(TAG, "Registro "+usuarios.toString());
+
+                    binding.ivURLImage.setVisibility(View.VISIBLE);
+                    Glide.with(binding.ivURLImage.getContext())
+                            .load(imagen)
+                            .error(R.drawable.ic_launcher_foreground)
+                            .apply(new RequestOptions().override(300, 300))
+                            .centerCrop()
+                            .into(binding.ivURLImage);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
-
 }

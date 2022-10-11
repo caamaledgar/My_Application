@@ -10,4 +10,14 @@
         android:name="com.example.myapplication.RegistrosFragment"
         android:label="fragment_registros"
         tools:layout="@layout/fragment_registros" />
+    <fragment
+        android:id="@+id/inicioFragment"
+        android:name="com.example.myapplication.InicioFragment"
+        android:label="fragment_inicio"
+        tools:layout="@layout/fragment_inicio" />
+    <fragment
+        android:id="@+id/recyclerRegistrosFragment"
+        android:name="com.example.myapplication.RecyclerRegistrosFragment"
+        android:label="fragment_recycler_registros"
+        tools:layout="@layout/fragment_recycler_registros" />
 </navigation>

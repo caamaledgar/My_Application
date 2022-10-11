@@ -47,4 +47,6 @@ public class Usuarios {
     public void setImagen(String imagen) {
         this.imagen = imagen;
     }
+
+
 }

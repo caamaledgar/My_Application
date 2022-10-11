@@ -214,6 +214,7 @@ Crear dentro de nuestro proyecto en la carpeta Java y en el pakage com, dos pack
 
 Estos son los elementos junto con el RecyclerVier y el Layout del Item quienes darán funcionalidad a nuestro Recycler
 
+![](https://github.com/caamaledgar/documentationProjects/blob/main/RecyclerView/Packages.png)
 
 La versión final debe mostrrnos una lista con nuestros registros incluyendo el diseño que creamos para cada item.
 

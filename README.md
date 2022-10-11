@@ -9,6 +9,51 @@ Para ello vamos añadir una funcionalidad a nuestra aplicación, utilizando la f
  ````
         Query userEmailQery = userRef.orderByChild("correo").equalTo(correo).limitToFirst(1);
         userEmailQery.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                 //... TODO
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
  ````
+
+A esta Listener validar que la consulta tiene indormación si el Query regresa datos, nos indicará que el registro ya se encuentra en nuestra base de datos.
+En caso contrario mover nuestra funcionalidad actual para registro de la información.
+
+ ````
+        userEmailQery.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    Toast.makeText(view.getContext(), "No se puede realizar el Registro. Correo Existente " + snapshot.toString(), Toast.LENGTH_SHORT).show();
+
+                } else {
+                    userRef.child(usuarios.getUid()).setValue(usuarios);
+                    binding.inputNombre.getEditText().setText("");
+                    binding.inputCorreo.getEditText().setText("");
+                    binding.inputImagen.getEditText().setText("");
+                    binding.inputNombre.requestFocus();
+                    Toast.makeText(view.getContext(), "Registro de Usuario Exitoso", Toast.LENGTH_SHORT).show();
+
+                    Log.d(TAG, "Registro "+usuarios.toString());
+
+                    binding.ivURLImage.setVisibility(View.VISIBLE);
+                    Glide.with(binding.ivURLImage.getContext())
+                            .load(imagen)
+                            .error(R.drawable.ic_launcher_foreground)
+                            .apply(new RequestOptions().override(300, 300))
+                            .centerCrop()
+                            .into(binding.ivURLImage);
+                }
+            }                
+
+ ````
+
+
+
 
 

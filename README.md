@@ -6,9 +6,9 @@ Nuestro Proyecto ahora ya cuenta con la conexión a FireBase y realiza registros
 Para ello vamos añadir una funcionalidad a nuestra aplicación, utilizando la función Query de Firebasa
 
 
-´´´´´
+ ````
         Query userEmailQery = userRef.orderByChild("correo").equalTo(correo).limitToFirst(1);
         userEmailQery.addListenerForSingleValueEvent(new ValueEventListener() {
-´´´´
+ ````
 
 

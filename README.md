@@ -51,26 +51,16 @@ Añadir la funcionalidad en nuestros fragments/activities para consumir imágene
 ![](https://github.com/caamaledgar/documentationProjects/blob/main/RecyclerView/ImageApp.png)
 
 
+Tambien es necesario que una vex capturada y registrada la informaión nuestos datos de captura inicial se limpien, para permitir una nueva captura.
 
-Nuestro Proyecto ahora ya cuenta con la conexión a FireBase y realiza registros a la Base de Datos, el siguiente paso es realizar un proceso de validación para que no se inserten registros duplicados.
+````
+ 
+        binding.tilNombre.getEditText().setText("");
+        binding.tilCorreo.getEditText().setText("");
+        binding.tilImagen.getEditText().setText("");
+        binding.tilNombre.requestFocus();
+````
 
-Para ello vamos añadir una funcionalidad a nuestra aplicación, utilizando la función Query de Firebasa
-
-
- ````
-        Query userEmailQery = userRef.orderByChild("correo").equalTo(correo).limitToFirst(1);
-        userEmailQery.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                 //... TODO
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
- ````
 Ahora vamos a refactorizar nuestro proyecto como nos marcan las mejores prácticas de la programación, para ellos crearemos nuevos métodos de nos dividan nuestra carga de trabajo. Para ello lo que hemos construido en nuestro OnViewCreated, cuando le damos click al boton lo vamos a enviar a nuevo método.
 
  ````
@@ -141,7 +131,7 @@ Y lo mandamos a llamar desde nuestro onViewCreated, es necesario pasarle como pa
     
 ````
 
-Ya como último paso debemos de limpiar los campos de captut
+Ya como último paso debemos de limpiar los campos de captura
 Para ello creamos un método de limpieza
 ````
     public void limpiarCaptura(){
@@ -166,6 +156,26 @@ Y lo mandamos a llamar desde nuestra función principal, que debe quedar con est
     }
 ````
 
+Nuestro Proyecto ahora ya cuenta con la conexión a FireBase y realiza registros a la Base de Datos, el siguiente paso es realizar un proceso de validación para que no se inserten registros duplicados.
+
+Para ello vamos añadir una funcionalidad a nuestra aplicación, utilizando la función Query de Firebasa
+
+
+ ````
+        Query userEmailQery = userRef.orderByChild("correo").equalTo(correo).limitToFirst(1);
+        userEmailQery.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                 //... TODO
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+ ````
+ 
 
 A esta Listener validar que la consulta tiene indormación si el Query regresa datos, nos indicará que el registro ya se encuentra en nuestra base de datos.
 En caso contrario mover nuestra funcionalidad actual para registro de la información.

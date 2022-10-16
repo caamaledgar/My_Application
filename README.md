@@ -22,6 +22,19 @@ Incluir en archivo AndroidManifiest.xml la funcionalidad para visualizar archivo
     <uses-permission android:name="android.permission.INTERNET" />
 ````
 
+En nuestro archivo XML, añadir un nuevo objeto que mostrará la imágen proporcionada por una URL
+ Nombrandola con un ID denominado iVURLImage
+    
+````
+        <ImageView
+            android:id="@+id/ivURLImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_launcher_foreground" />
+
+````
+
+
 Añadir la funcionalidad en nuestros fragments/activities para consumir imágenes desde una URL, añadir este proceso posterior a guardar los datos en Firebase
 
 ````
@@ -34,6 +47,9 @@ Añadir la funcionalidad en nuestros fragments/activities para consumir imágene
                             .into(binding.ivURLImage);
 
 ````
+
+![](https://github.com/caamaledgar/documentationProjects/blob/main/RecyclerView/ImageApp.png)
+
 
 
 Nuestro Proyecto ahora ya cuenta con la conexión a FireBase y realiza registros a la Base de Datoa, el siguiente paso es realizar un proceso de validación para que no se inserten registros duplicados.

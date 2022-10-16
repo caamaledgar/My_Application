@@ -52,7 +52,7 @@ Añadir la funcionalidad en nuestros fragments/activities para consumir imágene
 
 
 
-Nuestro Proyecto ahora ya cuenta con la conexión a FireBase y realiza registros a la Base de Datoa, el siguiente paso es realizar un proceso de validación para que no se inserten registros duplicados.
+Nuestro Proyecto ahora ya cuenta con la conexión a FireBase y realiza registros a la Base de Datos, el siguiente paso es realizar un proceso de validación para que no se inserten registros duplicados.
 
 Para ello vamos añadir una funcionalidad a nuestra aplicación, utilizando la función Query de Firebasa
 
@@ -71,6 +71,101 @@ Para ello vamos añadir una funcionalidad a nuestra aplicación, utilizando la f
             }
         });
  ````
+Ahora vamos a refactorizar nuestro proyecto como nos marcan las mejores prácticas de la programación, para ellos crearemos nuevos métodos de nos dividan nuestra carga de trabajo. Para ello lo que hemos construido en nuestro OnViewCreated, cuando le damos click al boton lo vamos a enviar a nuevo método.
+
+ ````
+        binding.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                insertarRegistro(myRef);
+
+            }
+        });
+ ````
+Nuestro método va recibir como paràmetro nuestra refeencia de la base de datos por ello en nuestro método hay que declararlo.
+Nuestro médodo debe quedar como sigue:
+
+````
+    public void insertarRegistro(DatabaseReference myRef){
+        String nombre = binding.tilNombre.getEditText().getText().toString();
+        String correo = binding.tilCorreo.getEditText().getText().toString();
+        String imagen = binding.tilImagen.getEditText().getText().toString();
+        //String imagen = "";
+        Usuarios usuarios = new Usuarios(myRef.push().getKey(), nombre, correo,imagen);
+        myRef.child(usuarios.getId()).setValue(usuarios);
+        binding.ivURLImage.setVisibility(View.VISIBLE);
+        Glide.with(binding.ivURLImage.getContext())
+                .load(imagen)
+                .error(R.drawable.ic_launcher_foreground)
+                .apply(new RequestOptions().override(300, 300))
+                .centerCrop()
+                .circleCrop()
+                .into(binding.ivURLImage);
+        binding.tilNombre.getEditText().setText("");
+        binding.tilCorreo.getEditText().setText("");
+        binding.tilImagen.getEditText().setText("");
+        binding.tilNombre.requestFocus();
+    }
+````
+
+Continuamos refactorizando, siguiendo los principios SOLID, divideremos la funcionalida, un metodo para traer los registros y otro para limpiar en la pantalla los datos mostrados. Crearemos un método para mostrar la imágen.
+
+````
+    public void mostrarImagen(String imagen){
+        binding.ivURLImage.setVisibility(View.VISIBLE);
+            Glide.with(binding.ivURLImage.getContext())
+                    .load(imagen)
+                    .error(R.drawable.ic_launcher_foreground)
+                    .apply(new RequestOptions().override(300, 300))
+                    .centerCrop()
+                    .circleCrop()
+                    .into(binding.ivURLImage);
+    }
+````
+
+Y lo mandamos a llamar desde nuestro onViewCreated, es necesario pasarle como parámetro la imagen 
+````
+    public void insertarRegistro(DatabaseReference myRef){
+        String nombre = binding.tilNombre.getEditText().getText().toString();
+        String correo = binding.tilCorreo.getEditText().getText().toString();
+        String imagen = binding.tilImagen.getEditText().getText().toString();
+        //String imagen = "";
+        Usuarios usuarios = new Usuarios(myRef.push().getKey(), nombre, correo,imagen);
+        myRef.child(usuarios.getId()).setValue(usuarios);
+        mostrarImagen(imagen);
+        binding.tilNombre.getEditText().setText("");
+        binding.tilCorreo.getEditText().setText("");
+        binding.tilImagen.getEditText().setText("");
+        binding.tilNombre.requestFocus();
+    }
+    
+````
+
+Ya como último paso debemos de limpiar los campos de captut
+Para ello creamos un método de limpieza
+````
+    public void limpiarCaptura(){
+        binding.tilNombre.getEditText().setText("");
+        binding.tilCorreo.getEditText().setText("");
+        binding.tilImagen.getEditText().setText("");
+        binding.tilNombre.requestFocus();
+    }
+````
+
+Y lo mandamos a llamar desde nuestra función principal, que debe quedar con este esquema.
+````
+    public void insertarRegistro(DatabaseReference myRef){
+        String nombre = binding.tilNombre.getEditText().getText().toString();
+        String correo = binding.tilCorreo.getEditText().getText().toString();
+        String imagen = binding.tilImagen.getEditText().getText().toString();
+        //String imagen = "";
+        Usuarios usuarios = new Usuarios(myRef.push().getKey(), nombre, correo,imagen);
+        myRef.child(usuarios.getId()).setValue(usuarios);
+        mostrarImagen(imagen);
+        limpiarCaptura();
+    }
+````
+
 
 A esta Listener validar que la consulta tiene indormación si el Query regresa datos, nos indicará que el registro ya se encuentra en nuestra base de datos.
 En caso contrario mover nuestra funcionalidad actual para registro de la información.

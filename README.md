@@ -337,6 +337,66 @@ Estos son los elementos junto con el RecyclerVier y el Layout del Item quienes d
 
 ![](https://github.com/caamaledgar/documentationProjects/blob/main/RecyclerView/Packages.png)
 
+
+
+Crear nuestra Adaptador
+Inicialmente debemos de extender nuestra clase  de la clase RecyclerView
+
+````
+public class MyRegistrosAdapter extends RecyclerView.Adapter<MyRegistrosAdapter.MyViewHolder> {
+
+    public static class MyViewHolder extends RecyclerView.ViewHolder{
+
+   }
+}
+````
+
+Posteriormente, generamos el constructor del la clase MyViewHolder
+
+````
+    public static class MyViewHolder extends RecyclerView.ViewHolder{
+
+        public MyViewHolder(@NonNull View itemView) {
+            super(itemView);
+        }
+    }
+
+````
+
+A nuestra clase princpal le generamos sus métodos
+````
+public class MyRegistrosAdapter extends RecyclerView.Adapter<MyRegistrosAdapter.MyViewHolder> {
+
+    @NonNull
+    @Override
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return null;
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return 0;
+    }
+
+    public static class MyViewHolder extends RecyclerView.ViewHolder{
+
+        public MyViewHolder(@NonNull View itemView) {
+            super(itemView);
+        }
+    }
+
+}
+
+````
+
+
+
+
 La versión final debe mostrrnos una lista con nuestros registros incluyendo el diseño que creamos para cada item.
 
 RecyclerViewLista

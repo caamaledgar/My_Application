@@ -1,6 +1,6 @@
 # My_Application
 Mi primera aplicación con Android Firebase - Fragments y RecyclerView
-9:12
+13:01
 
 El tratamiento de la imágen principal se realizó con la libreria Glide
 
@@ -420,6 +420,41 @@ Ya podemos modificar método getItemCount, por que ya tenemos un ArrayList
 ````
 
 
+En nuestra clase MyViewHolder, instanciar nuestros objetos del Layout detalle
+
+````
+    public static class MyViewHolder extends RecyclerView.ViewHolder{
+        TextView nombre, correo, urlimage;
+
+        public MyViewHolder(@NonNull View itemView) {
+            super(itemView);
+            nombre = itemView.findViewById(R.id.tvnombre);
+            correo = itemView.findViewById(R.id.tvcorreo);
+            urlimage = itemView.findViewById(R.id.tvimagen);
+        }
+    }
+````
+
+En el método onCreateViewHolder de MyViewHolder modificar el método, para apuntar a nuestro layout detalle
+
+````
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        // return null;
+        View v = LayoutInflater.from(context).inflate(R.layout.detailregistro, parent, false);
+        return new MyViewHolder(v);
+    }
+````
+
+
+En el método onBindViewHolder asignarle al holder nuestos objetos
+````
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) { 
+        Usuarios usuarios = list.get(position);
+        holder.nombre.setText(usuarios.getNombre());
+        holder.correo.setText(usuarios.getCorreo());
+        holder.urlimage.setText(usuarios.getImagen());
+    }
+````
 
 
 

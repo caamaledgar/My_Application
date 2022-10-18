@@ -394,6 +394,32 @@ public class MyRegistrosAdapter extends RecyclerView.Adapter<MyRegistrosAdapter.
 
 ````
 
+De igual forma a nuestro constructor le añadimos dos atributos, un Context y un ArrayList
+Con el generador de código le creamos un constructor, para estos atributos
+
+````
+public class MyRegistrosAdapter extends RecyclerView.Adapter<MyRegistrosAdapter.MyViewHolder> {
+    
+    Context context;
+    ArrayList<Usuarios> list;
+
+    public MyRegistrosAdapter(Context context, ArrayList<Usuarios> list) {
+        this.context = context;
+        this.list = list;
+    }
+
+````
+
+Ya podemos modificar método getItemCount, por que ya tenemos un ArrayList
+````
+    @Override
+    public int getItemCount() {
+        //return 0;
+        return list.size();
+    }
+````
+
+
 
 
 

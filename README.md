@@ -1,6 +1,6 @@
 # My_Application
 Mi primera aplicación con Android Firebase - Fragments y RecyclerView
-
+9:12
 
 El tratamiento de la imágen principal se realizó con la libreria Glide
 

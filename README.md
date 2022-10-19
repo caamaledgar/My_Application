@@ -72,7 +72,7 @@ Ahora vamos a refactorizar nuestro proyecto como nos marcan las mejores práctic
             }
         });
  ````
-Nuestro método va recibir como paràmetro nuestra refeencia de la base de datos por ello en nuestro método hay que declararlo.
+Nuestro método va recibir como paràmetro nuestra refeencia de la base de datos por ello hay que declararlo.
 Nuestro médodo debe quedar como sigue:
 
 ````

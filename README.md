@@ -351,7 +351,7 @@ public class MyRegistrosAdapter extends RecyclerView.Adapter<MyRegistrosAdapter.
 }
 ````
 
-Posteriormente, generamos el constructor del la clase MyViewHolder
+Posteriormente, generamos el constructor de la clase MyViewHolder
 
 ````
     public static class MyViewHolder extends RecyclerView.ViewHolder{
@@ -457,7 +457,7 @@ En el método onBindViewHolder asignarle al holder nuestos objetos
 ````
 
 
-Nuestro Adapter debe quedar con este c{odigo
+Nuestro Adapter debe quedar con este código
 ````
 public class MyRegistrosAdapter extends RecyclerView.Adapter<MyRegistrosAdapter.MyViewHolder> {
 
@@ -589,6 +589,11 @@ El código final quedaria de la siguiente forma
         });
 
     }
+
+````
+
+Probemos nuestra aplicación ya nos debe mostrar la información
+````
 
 ````
 

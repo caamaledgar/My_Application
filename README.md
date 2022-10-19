@@ -575,6 +575,7 @@ El código final quedaria de la siguiente forma
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                list.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     Usuarios usuarios = dataSnapshot.getValue(Usuarios.class);
                     list.add(usuarios);

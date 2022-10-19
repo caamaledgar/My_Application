@@ -504,11 +504,95 @@ public class MyRegistrosAdapter extends RecyclerView.Adapter<MyRegistrosAdapter.
 }
 ````
 
+Ahora pasaremos a trabajar en nuestro fragmento, declaramos nuestras variables para instanciar el RecyclerView, DatabaseReferencia, Adapter, ArrayList
+````
+public class RecyclerRegistrosFragment extends Fragment {
+    RecyclerView recyclerView;
+    DatabaseReference database;
+    MyRegistrosAdapter myAdapter;
+    ArrayList<Usuarios> list;
+````
+
+
+Vamos a crear la funcionalidad de nuestra vista
+````
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        recyclerView = view.findViewById(R.id.rvRegistros);
+        database = FirebaseDatabase.getInstance().getReference("message/Usuarios");
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
 ````
+
+Instanciamos nuestra lista
+````
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    // ...
+        list = new ArrayList<>();
+        myAdapter = new MyRegistrosAdapter(view.getContext(), list);
+        recyclerView.setAdapter(myAdapter);
 ````
 
 
+Añadiremos un escucha addValueEventListener
+````
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    // ...
+        database.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    Usuarios usuarios = dataSnapshot.getValue(Usuarios.class);
+                    list.add(usuarios);
+                }
+                myAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+````
+
+El código final quedaria de la siguiente forma
+````
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        recyclerView = view.findViewById(R.id.rvRegistros);
+        database = FirebaseDatabase.getInstance().getReference("message/Usuarios");
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+
+        list = new ArrayList<>();
+        myAdapter = new MyRegistrosAdapter(view.getContext(), list);
+        recyclerView.setAdapter(myAdapter);
+
+        database.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    Usuarios usuarios = dataSnapshot.getValue(Usuarios.class);
+                    list.add(usuarios);
+                }
+                myAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+````
+
+Llegamos al final de la programación veamos el resultado de nuesta aplicación
 La versión final debe mostrrnos una lista con nuestros registros incluyendo el diseño que creamos para cada item.
 
 RecyclerViewLista

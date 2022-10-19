@@ -457,6 +457,57 @@ En el método onBindViewHolder asignarle al holder nuestos objetos
 ````
 
 
+Nuestro Adapter debe quedar con este c{odigo
+````
+public class MyRegistrosAdapter extends RecyclerView.Adapter<MyRegistrosAdapter.MyViewHolder> {
+
+    Context context;
+    ArrayList<Usuarios> list;
+
+    public MyRegistrosAdapter(Context context, ArrayList<Usuarios> list) {
+        this.context = context;
+        this.list = list;
+    }
+
+    @NonNull
+    @Override
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        // return null;
+        View v = LayoutInflater.from(context).inflate(R.layout.detailregistro, parent, false);
+        return new MyViewHolder(v);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        Usuarios usuarios = list.get(position);
+        holder.nombre.setText(usuarios.getNombre());
+        holder.correo.setText(usuarios.getCorreo());
+        holder.urlimage.setText(usuarios.getImagen());
+    }
+
+    @Override
+    public int getItemCount() {
+        //return 0;
+        return list.size();
+    }
+
+    public static class MyViewHolder extends RecyclerView.ViewHolder{
+        TextView nombre, correo, urlimage;
+
+        public MyViewHolder(@NonNull View itemView) {
+            super(itemView);
+            nombre = itemView.findViewById(R.id.tvnombre);
+            correo = itemView.findViewById(R.id.tvcorreo);
+            urlimage = itemView.findViewById(R.id.tvimagen);
+        }
+    }
+}
+````
+
+
+````
+````
+
 
 La versión final debe mostrrnos una lista con nuestros registros incluyendo el diseño que creamos para cada item.
 

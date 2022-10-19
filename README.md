@@ -593,9 +593,38 @@ El código final quedaria de la siguiente forma
 ````
 
 Probemos nuestra aplicación ya nos debe mostrar la información
+
+![](https://github.com/caamaledgar/documentationProjects/blob/main/RecyclerView/RecyclerViewSinImagen.png)
+
+
+Nuestro siguiente paso, será trabajar con la librería Glide para poder mostrar la imágen
+
+Primero debemos añadir a nuestra clase MyViewHolder
 ````
+        public MyViewHolder(@NonNull View itemView) {
+            // ...
+            // Objeto ImageView
+            ivImagen = itemView.findViewById(R.id.imgItem);
+        }
 
 ````
+
+Segundo anadir la librería Glide a nuestro fragmento
+````
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        // ...
+        // Mostrar la imágen de Intermet
+        String urlImagen = usuarios.getImagen();
+        Glide.with(context)
+                .load(urlImagen)
+                .circleCrop()
+                .error(R.drawable.ic_launcher_foreground)
+                .into(holder.ivImagen);
+
+    }
+
+````
+
 
 Llegamos al final de la programación veamos el resultado de nuesta aplicación
 La versión final debe mostrrnos una lista con nuestros registros incluyendo el diseño que creamos para cada item.

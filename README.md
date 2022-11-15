@@ -51,7 +51,40 @@ Añadir la funcionalidad en nuestros fragments/activities para consumir imágene
 ![](https://github.com/caamaledgar/documentationProjects/blob/main/RecyclerView/ImageApp.png)
 
 
+
 Tambien es necesario que una vex capturada y registrada la informaión nuestos datos de captura inicial se limpien, para permitir una nueva captura.
+
+Configuracion de nuestro fragmento para que sopoprte Binding, en la clase superior al inicio del fragmento
+
+````
+
+public class RVCiudadesFragment extends Fragment {
+    FragmentCiudadBinding binding;
+````
+
+
+
+
+Actualizar el metodo onCreateView y añadir el metodo onDestroy
+````
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        //return inflater.inflate(R.layout.fragment_r_v_ciudades, container, false);
+        binding = FragmentCiudadBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
+        return view;
+   }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        binding = null;
+    }
+````
+    
+    
+
 
 ````
  

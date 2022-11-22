@@ -3,7 +3,7 @@ Mi primera aplicación con Android Firebase - Fragments y RecyclerView
 13:01
 
 
-Iniciamos con nuestro Layout de captura
+Iniciamos con nuestro Layout de captura, creando desde nuestro nav_graph un nuevo fragmento, el cual para este ejemplo denominamos RegistrosFragment
 
 ````
     <LinearLayout

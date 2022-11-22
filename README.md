@@ -169,17 +169,20 @@ Actualizar el metodo onCreateView y añadir el metodo onDestroy
     
     
 
-
+Crear nuestro método onViewCreated
 ````
  
-        binding.tilNombre.getEditText().setText("");
-        binding.tilCorreo.getEditText().setText("");
-        binding.tilImagen.getEditText().setText("");
-        binding.tilNombre.requestFocus();
+     @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        
+    }
+
 ````
 
 Ahora vamos a refactorizar nuestro proyecto como nos marcan las mejores prácticas de la programación, para ellos crearemos nuevos métodos de nos dividan nuestra carga de trabajo. Para ello lo que hemos construido en nuestro OnViewCreated, cuando le damos click al boton lo vamos a enviar a nuevo método.
 
+Añadir funcionalidad a nuestro Botton
  ````
         binding.button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -189,6 +192,19 @@ Ahora vamos a refactorizar nuestro proyecto como nos marcan las mejores práctic
             }
         });
  ````
+ 
+ Antes de insertar Registros Debe existir nuestro objeto 
+ Con sus constructores, sus get y sus set
+ 
+ Ejemplo
+  ````
+ public class Estados {
+    String uid;
+    String nombreEstado;
+    String descEstado;
+    String imgEstado;
+````
+ 
 Nuestro método va recibir como paràmetro nuestra refeencia de la base de datos por ello hay que declararlo.
 Nuestro médodo debe quedar como sigue:
 

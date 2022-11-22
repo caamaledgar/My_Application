@@ -23,7 +23,7 @@ Incluir en archivo AndroidManifiest.xml la funcionalidad para visualizar archivo
 ````
 
 En nuestro archivo XML, añadir un nuevo objeto que mostrará la imágen proporcionada por una URL
- Nombrandola con un ID denominado iVURLImage
+ Nombrandola con un ID denominado ivURLImage
     
 ````
         <ImageView

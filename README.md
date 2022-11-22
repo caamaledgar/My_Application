@@ -205,7 +205,9 @@ Añadir funcionalidad a nuestro Botton
     String imgEstado;
 ````
  
-Nuestro método va recibir como paràmetro nuestra refeencia de la base de datos por ello hay que declararlo.
+Nuestro método va recibir como paràmetro nuestra refeencia de la base de datos por ello hay que declararlo, o en su caso declarar como una variable global nuestra referencia al abase de datos
+
+Incluir el generador de Id unicas de la base de datos a nuestro objeto myRef.push().getKey()
 Nuestro médodo debe quedar como sigue:
 
 ````

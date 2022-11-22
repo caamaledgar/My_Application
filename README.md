@@ -23,7 +23,7 @@ Iniciamos con nuestro Layout de captura, creando desde nuestro nav_graph un nuev
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/inputNombre"
+            android:id="@+id/tilNombre"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -36,7 +36,7 @@ Iniciamos con nuestro Layout de captura, creando desde nuestro nav_graph un nuev
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/inputCorreo"
+            android:id="@+id/tilCorreo"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -49,7 +49,7 @@ Iniciamos con nuestro Layout de captura, creando desde nuestro nav_graph un nuev
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/inputImagen"
+            android:id="@+id/tilImagen"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">

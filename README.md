@@ -78,6 +78,8 @@ Iniciamos con nuestro Layout de captura
     
 ````    
 
+![](https://github.com/caamaledgar/documentationProjects/blob/main/RecyclerView/capturaRegistros.png)
+
 
 Para el tratamiento de la imágen principal la realizaremos con la libreria Glide
 

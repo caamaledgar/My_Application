@@ -362,6 +362,8 @@ De igual forma crearmos un Layout para los detalles de nuestro RecyclerView, en 
 
 ![](https://github.com/caamaledgar/documentationProjects/blob/main/RecyclerView/detailregistro.png)
 
+Cambiar el Layout a un CardView
+
 ````
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"

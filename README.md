@@ -690,6 +690,7 @@ Vamos a crear la funcionalidad de nuestra vista
 ````
 
 Instanciamos nuestra lista
+Validar el nombre de nuestros adaptadores
 ````
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     // ...

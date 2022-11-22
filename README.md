@@ -64,12 +64,10 @@ public class RVCiudadesFragment extends Fragment {
     FragmentCiudadBinding binding;
     
     // Conexión al Nodo de la Base de Datos Firebase
-    String DB_FB_NODE = "message";     
+    String DB_FB_NODE = "ItChina/AppMovil/Hidroponia/Usuarios";     
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference dbRef = database.getReference(DB_FB_NODE);
+    DatabaseReference myRef = database.getReference(DB_FB_NODE);
     
-    // Estructura donde guardaremos los datos
-    DatabaseReference userRef = dbRef.child("Usuarios");
     
 ````
 

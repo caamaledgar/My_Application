@@ -242,7 +242,7 @@ En caso contrario mover nuestra funcionalidad actual para registro de la informa
 
  ````
 
-Para iniciar con nuestro RecyclerView, debemos crear un nuevo fragmento donde se trabajará esta nueva vista, la cual la crearemos desde nuestra vista de navegación nav_graph
+Para iniciar con nuestro RecyclerView, debemos crear un nuevo fragmento donde se trabajará esta nueva vista, la cual la crearemos desde nuestro esquema  de navegación nav_graph
 
 ![](https://github.com/caamaledgar/documentationProjects/blob/main/RecyclerView/RecylerView.png)
 
@@ -328,7 +328,24 @@ De igual forma crearmos un Layout para los detalles de nuestro RecyclerView, en 
 ![](https://github.com/caamaledgar/documentationProjects/blob/main/RecyclerView/detalleRegistro.png)
 
 
-Ahora relacionaremos nuestro Fragmento de captura con nuestro RecyclerView, para ello incluyamos un botón de estilo TexButton, con un icono de flecha, que previamente debemos de incluir como un Vector Asset y añadirle un ID
+Una vez creado nuestro detalle del recycler podemos incluirlo en nuestro layput del Recycler para ver su diseño
+
+
+````
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvRegistros"
+        android:layout_width="match_parent"
+
+        tools:listitem="@layout/detailrecycler"
+        
+        android:layout_height="match_parent"
+        android:orientation="vertical" />
+````
+
+![](https://github.com/caamaledgar/documentationProjects/blob/main/RecyclerView/designRecyclerWithDetails.png)
+
+
+Muy bien, ahora relacionaremos nuestro Fragmento de captura con nuestro RecyclerView, para ello incluyamos un botón de estilo TexButton, con un icono de flecha, que previamente debemos de incluir como un Vector Asset y añadirle un ID
 
 ````
     <Button

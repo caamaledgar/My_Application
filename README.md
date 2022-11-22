@@ -55,11 +55,22 @@ Añadir la funcionalidad en nuestros fragments/activities para consumir imágene
 Tambien es necesario que una vez capturada y registrada la informaión nuestos datos de captura inicial se limpien, para permitir una nueva captura.
 
 Configuracion de nuestro fragmento para que sopoprte Binding, en la clase superior al inicio del fragmento
+De igual forma añadir las variables para el uso de Firebase
+
 
 ````
 
 public class RVCiudadesFragment extends Fragment {
     FragmentCiudadBinding binding;
+    
+    // Conexión al Nodo de la Base de Datos Firebase
+    String DB_FB_NODE = "message";     
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference dbRef = database.getReference(DB_FB_NODE);
+    
+    // Estructura donde guardaremos los datos
+    DatabaseReference userRef = dbRef.child("Usuarios");
+    
 ````
 
 

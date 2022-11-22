@@ -2,7 +2,84 @@
 Mi primera aplicación con Android Firebase - Fragments y RecyclerView
 13:01
 
-El tratamiento de la imágen principal se realizó con la libreria Glide
+
+Iniciamos con nuestro Layout de captura
+
+````
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.288">
+
+
+        <TextView
+            android:id="@+id/textIncio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hola Mundo Android, Saludos desde el ITChiná!!!"
+            android:textColor="@color/primaryColor" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputNombre"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nombre Completo" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputCorreo"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Correo Electrónico" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputImagen"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="URL Avatar" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Registrar" />
+
+    </LinearLayout>
+    
+````    
+
+
+Para el tratamiento de la imágen principal la realizaremos con la libreria Glide
 
 En el archivo build.gradle de la app, se añade las dependencias de glide
     
@@ -22,7 +99,7 @@ Incluir en archivo AndroidManifiest.xml la funcionalidad para visualizar archivo
     <uses-permission android:name="android.permission.INTERNET" />
 ````
 
-En nuestro archivo XML, añadir un nuevo objeto que mostrará la imágen proporcionada por una URL
+En nuestro archivo XML del layout de captura de Registros, añadir un nuevo objeto que mostrará la imágen proporcionada por una URL
  Nombrandola con un ID denominado ivURLImage
     
 ````

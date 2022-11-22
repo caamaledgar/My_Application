@@ -128,7 +128,8 @@ Añadir la funcionalidad en nuestros fragments/activities para consumir imágene
 
 Tambien es necesario que una vez capturada y registrada la informaión nuestos datos de captura inicial se limpien, para permitir una nueva captura.
 
-Configuracion de nuestro fragmento para que sopoprte Binding, en la clase superior al inicio del fragmento
+Configuracion de nuestro fragmento para que sopoprte Binding, en la clase superior al inicio del fragmento declarar bindig, con el noombre de nuestro fragmento y la terminacion Binding
+
 De igual forma añadir las variables para el uso de Firebase
 
 

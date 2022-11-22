@@ -372,6 +372,9 @@ Muy bien, ahora relacionaremos nuestro Fragmento de captura con nuestro Recycler
 
 ````
 
+![](https://github.com/caamaledgar/documentationProjects/blob/main/RecyclerView/editregistros.png)
+
+
 En nuestro archivo Java añadir la navegación
 
 ````

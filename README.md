@@ -664,7 +664,10 @@ public class MyRegistrosAdapter extends RecyclerView.Adapter<MyRegistrosAdapter.
 }
 ````
 
+
 Ahora pasaremos a trabajar en nuestro fragmento, declaramos nuestras variables para instanciar el RecyclerView, DatabaseReferencia, Adapter, ArrayList
+RecyclerRegistrosFragment.java
+
 ````
 public class RecyclerRegistrosFragment extends Fragment {
     RecyclerView recyclerView;

@@ -52,7 +52,7 @@ Añadir la funcionalidad en nuestros fragments/activities para consumir imágene
 
 
 
-Tambien es necesario que una vex capturada y registrada la informaión nuestos datos de captura inicial se limpien, para permitir una nueva captura.
+Tambien es necesario que una vez capturada y registrada la informaión nuestos datos de captura inicial se limpien, para permitir una nueva captura.
 
 Configuracion de nuestro fragmento para que sopoprte Binding, en la clase superior al inicio del fragmento
 

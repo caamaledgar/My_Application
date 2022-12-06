@@ -125,10 +125,20 @@ Añadir la funcionalidad en nuestros fragments/activities para consumir imágene
 ![](https://github.com/caamaledgar/documentationProjects/blob/main/RecyclerView/ImageApp.png)
 
 
+## Binding
 
-Tambien es necesario que una vez capturada y registrada la informaión nuestos datos de captura inicial se limpien, para permitir una nueva captura.
+Tambien es necesario que una vez capturada y registrada la información nuestos datos de captura inicial se limpien, para permitir una nueva captura.
 
 Configuracion de nuestro fragmento para que sopoprte Binding, en la clase superior al inicio del fragmento declarar bindig, con el noombre de nuestro fragmento y la terminacion Binding
+
+En el archivo Build Gradle de nuestra app incluir la configuración
+
+
+````
+    viewBinding {
+        enabled = true
+    }
+````
 
 De igual forma añadir las variables para el uso de Firebase
 
@@ -179,6 +189,8 @@ Crear nuestro método onViewCreated
     }
 
 ````
+
+## Funcionalidad
 
 Ahora vamos a refactorizar nuestro proyecto como nos marcan las mejores prácticas de la programación, para ellos crearemos nuevos métodos de nos dividan nuestra carga de trabajo. Para ello lo que hemos construido en nuestro OnViewCreated, cuando le damos click al boton lo vamos a enviar a nuevo método.
 
